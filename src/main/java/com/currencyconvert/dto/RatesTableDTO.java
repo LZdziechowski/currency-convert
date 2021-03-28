@@ -6,29 +6,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RateDTO {
+public class RatesTableDTO {
 
-    @JsonProperty("currency")
-    private String currency;
+    @JsonProperty("table")
+    private String table;
 
-    @JsonProperty("code")
-    private String code;
+    @JsonProperty("effectiveDate")
+    private String effectiveDate;
 
-    @JsonProperty("mid")
-    private BigDecimal mid;
+    @JsonProperty("rates")
+    private List<RateDTO> rates;
 
     @Override
     public String toString() {
-        return "RateDTO{" +
-                "currency='" + currency + '\'' +
-                ", code='" + code + '\'' +
-                ", mid=" + mid +
+        return "RatesTableDTO{" +
+                "table='" + table + '\'' +
+                ", effectiveDate='" + effectiveDate + '\'' +
+                ", rates=" + rates +
                 '}';
     }
 }

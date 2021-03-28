@@ -2,6 +2,7 @@ package com.currencyconvert.controller;
 
 import com.currencyconvert.client.NbpClient;
 import com.currencyconvert.dto.RateDTO;
+import com.currencyconvert.dto.RatesTableDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,7 @@ public class NBPController {
 
     @GetMapping("getRates")
     public void getRates() {
-        List<RateDTO> rateDTOList = nbpClient.getRates();
-
+        List<RatesTableDTO> rateDTOList = nbpClient.getRates();
         rateDTOList.forEach(System.out::println);
     }
 }
