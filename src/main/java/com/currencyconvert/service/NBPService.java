@@ -17,11 +17,11 @@ public class NBPService {
     private final NBPClient nbpClient;
 
     public List<RatesTableDTO> getAvailableRates() {
-        return nbpClient.getRates();
+        return nbpClient.getAllRates();
     }
 
     public List<String> getAvailableCurrency() {
-        return nbpClient.getRates().stream()
+        return nbpClient.getAllRates().stream()
                 .map(RatesTableDTO::getRates)
                 .flatMap(Collection::stream)
                 .map(RateDTO::getCurrency)

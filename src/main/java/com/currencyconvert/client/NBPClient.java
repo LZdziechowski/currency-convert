@@ -38,7 +38,7 @@ public class NBPClient {
                 .orElse(Collections.emptyList());
     }
 
-    public List<RatesTableDTO> getRates() {
+    public List<RatesTableDTO> getAllRates() {
         List<RatesTableDTO> ratesResponse = Stream.of(new RatesTableDTO[]{}).collect(Collectors.toList());
         for (String tables : nbpRatesTables) {
             ratesResponse.addAll(getRatesFromTable(tables));
