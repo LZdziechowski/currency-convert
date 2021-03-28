@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 
 @Component
 @RequiredArgsConstructor
-public class NbpClient {
+public class NBPClient {
 
     private final RestTemplate restTemplate;
 
