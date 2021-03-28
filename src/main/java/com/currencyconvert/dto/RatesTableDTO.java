@@ -22,13 +22,4 @@ public class RatesTableDTO {
 
     @JsonProperty("rates")
     private List<RateDTO> rates;
-
-    @Override
-    public String toString() {
-        return "RatesTableDTO{" +
-                "table='" + table + '\'' +
-                ", effectiveDate='" + effectiveDate + '\'' +
-                ", rates=" + rates +
-                '}';
-    }
 }
