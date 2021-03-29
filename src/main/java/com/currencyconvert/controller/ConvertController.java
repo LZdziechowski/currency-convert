@@ -33,6 +33,4 @@ public class ConvertController {
     public String illegalStateExceptionHandler(IllegalStateException e) {
         return e.getMessage();
     }
-
-
 }
