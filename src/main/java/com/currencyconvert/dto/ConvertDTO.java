@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public class ConvertDTO {
+public final class ConvertDTO {
 
     private final double amount;
     private final String fromCurrency;
