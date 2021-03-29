@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,6 +41,21 @@ public class NBPService {
                 .collect(Collectors.toList());
         currencyFromNBP.add("złoty (Polska)");
         return currencyFromNBP.stream()
+                .map(String::toUpperCase)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getAvailableCurrencyWithRates() {
+        List<String> resultMap = Stream.of(new String[]{}).collect(Collectors.toList());
+        List<CurrencyRate> currencyWithRatesFromNBP = getAvailableCurrencyRates().stream()
+                .map(RatesTable::getCurrencyRates)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+        for (CurrencyRate currencyRate : currencyWithRatesFromNBP) {
+            resultMap.add(currencyRate.getCurrency() + ": " + currencyRate.getMid().toString());
+        }
+        return resultMap.stream()
                 .map(String::toUpperCase)
                 .sorted()
                 .collect(Collectors.toList());
