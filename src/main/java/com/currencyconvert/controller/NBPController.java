@@ -1,6 +1,7 @@
 package com.currencyconvert.controller;
 
 import com.currencyconvert.dto.RatesTableDTO;
+import com.currencyconvert.mapper.CurrencyRatesMapper;
 import com.currencyconvert.service.NBPService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,11 @@ import java.util.List;
 public class NBPController {
 
     private final NBPService nbpService;
+    private final CurrencyRatesMapper currencyRatesMapper;
 
     @GetMapping("getRates")
     public List<RatesTableDTO> getRates() {
-        return nbpService.getAvailableRates();
+        return currencyRatesMapper.mapToRatesTableDTOList(nbpService.getAvailableCurrencyRates());
     }
 
     @GetMapping("getCurrency")

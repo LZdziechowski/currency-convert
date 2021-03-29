@@ -12,8 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
 @RequiredArgsConstructor
@@ -24,10 +22,6 @@ public class NBPClient {
     @Value("${nbp.api.endpoint}")
     private String nbpApiEndpoint;
 
-    @Value("${nbp.api.tables}")
-    private List<String> nbpRatesTables;
-
-
     public List<RatesTableDTO> getRatesFromTable(String table) {
         URI uri = UriComponentsBuilder.fromHttpUrl(nbpApiEndpoint + "/exchangerates/tables/" + table + "/")
                 .queryParam("format", "json")
@@ -36,13 +30,5 @@ public class NBPClient {
         return Optional.ofNullable(ratesResponse)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
-    }
-
-    public List<RatesTableDTO> getAllRates() {
-        List<RatesTableDTO> ratesResponse = Stream.of(new RatesTableDTO[]{}).collect(Collectors.toList());
-        for (String tables : nbpRatesTables) {
-            ratesResponse.addAll(getRatesFromTable(tables));
-        }
-        return ratesResponse;
     }
 }
