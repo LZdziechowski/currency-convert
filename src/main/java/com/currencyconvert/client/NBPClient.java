@@ -22,7 +22,7 @@ public class NBPClient {
     @Value("${nbp.api.endpoint}")
     private String nbpApiEndpoint;
 
-    public List<RatesTableDTO> getRatesFromTable(String table) {
+    public List<RatesTableDTO> getCurrencyWithRatesFromTable(String table) {
         URI uri = UriComponentsBuilder.fromHttpUrl(nbpApiEndpoint + "/exchangerates/tables/" + table + "/")
                 .queryParam("format", "json")
                 .build().encode().toUri();
