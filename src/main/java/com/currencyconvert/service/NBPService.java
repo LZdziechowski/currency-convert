@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,7 +27,7 @@ public class NBPService {
     public List<RatesTable> getAvailableCurrencyRates() {
             List<RatesTableDTO> ratesResponse = Stream.of(new RatesTableDTO[]{}).collect(Collectors.toList());
             for (String tables : nbpRatesTables) {
-                ratesResponse.addAll(nbpClient.getRatesFromTable(tables));
+                ratesResponse.addAll(nbpClient.getCurrencyWithRatesFromTable(tables));
             }
             return currencyRatesMapper.mapToRatesTableList(ratesResponse);
     }
