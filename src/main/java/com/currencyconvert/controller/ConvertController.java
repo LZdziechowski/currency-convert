@@ -5,10 +5,7 @@ import com.currencyconvert.dto.ConvertDTO;
 import com.currencyconvert.mapper.ConvertMapper;
 import com.currencyconvert.service.ConvertService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/app")
@@ -26,4 +23,16 @@ public class ConvertController {
         Convert convert = convertMapper.mapToConvert(new ConvertDTO(amount, fromCurrency, toCurrency));
         return convertService.convertCurrency(convert);
     }
+
+    @ExceptionHandler(NumberFormatException.class)
+    public String numberFormatExceptionHandler() {
+        return "Given amount must be a number";
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public String illegalStateExceptionHandler(IllegalStateException e) {
+        return e.getMessage();
+    }
+
+
 }
