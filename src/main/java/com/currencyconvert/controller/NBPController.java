@@ -19,8 +19,8 @@ public class NBPController {
     private final CurrencyRatesMapper currencyRatesMapper;
 
     @GetMapping("getRates")
-    public List<RatesTableDTO> getRates() {
-        return currencyRatesMapper.mapToRatesTableDTOList(nbpService.getAvailableCurrencyRates());
+    public List<String> getRates() {
+        return nbpService.getAvailableCurrencyWithRates();
     }
 
     @GetMapping("getCurrency")
