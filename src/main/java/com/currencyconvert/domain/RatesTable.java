@@ -1,16 +1,16 @@
 package com.currencyconvert.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
-public class RatesTable {
+public final class RatesTable {
 
-    private String table;
-    private LocalDate effectiveDate;
-    private List<Rate> rates;
+    private final String table;
+    private final LocalDate effectiveDate;
+    private final List<CurrencyRate> currencyRates;
 }
