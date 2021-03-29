@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @RequiredArgsConstructor
 @Getter
-public class Convert {
+public final class Convert {
 
     private final BigDecimal amount;
     private final String fromCurrency;
