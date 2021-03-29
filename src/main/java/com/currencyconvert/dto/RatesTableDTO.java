@@ -21,5 +21,5 @@ public class RatesTableDTO {
     private String effectiveDate;
 
     @JsonProperty("rates")
-    private List<RateDTO> rates;
+    private List<CurrencyRateDTO> rates;
 }

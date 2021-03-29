@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RateDTO {
+public class CurrencyRateDTO {
 
     @JsonProperty("currency")
     private String currency;
