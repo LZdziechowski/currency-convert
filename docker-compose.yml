@@ -4,20 +4,21 @@ services:
 
   currency-convert:
     build: .
-    restart: on-failure
-    depends_on:
-      - mysql_dbnbp
+    restart: always
     ports:
       - 8080:8080
     environment:
-      - DATABASE_HOST=mysql_dbnbp
+      - DATABASE_HOST=db
       - DATABASE_USER=nbp_user
       - DATABASE_PASSWORD=nbp
       - DATABASE_NAME=nbp_currency
       - DATABASE_PORT=3306
+    command: "gradle build jar && java -jar build/libs/currency-convert-0.0.1-SNAPSHOT.jar"
+    volumes:
+    - .:/var/app
 
-  mysql_dbnbp:
-    image: mysql:8.0
+  db:
+    image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=admin
       - MYSQL_DATABASE=nbp_currency
@@ -25,7 +26,3 @@ services:
       - MYSQL_PASSWORD=nbp
     ports:
       - 3306:3306
-    cap_add:
-      - SYS_NICE  # CAP_SYS_NICE
-    security_opt:
-      - seccomp:unconfined

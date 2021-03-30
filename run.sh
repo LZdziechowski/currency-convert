@@ -1,0 +1,1 @@
+gradle build jar && java -jar "build/libs/currency-convert-0.0.1-SNAPSHOT.jar"
