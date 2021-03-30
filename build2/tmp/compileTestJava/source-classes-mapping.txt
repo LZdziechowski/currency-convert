@@ -1,2 +1,0 @@
-com/currencyconvert/CurrencyConvertApplicationTests.java
- com.currencyconvert.CurrencyConvertApplicationTests
