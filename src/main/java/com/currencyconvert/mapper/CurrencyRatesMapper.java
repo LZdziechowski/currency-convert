@@ -18,19 +18,9 @@ public class CurrencyRatesMapper {
         return new CurrencyRate(currencyRateDTO.getCurrency(), currencyRateDTO.getCode(), new BigDecimal(currencyRateDTO.getMid()));
     }
 
-    public CurrencyRateDTO mapToRateDTO(CurrencyRate currencyRate) {
-        return new CurrencyRateDTO(currencyRate.getCurrency(), currencyRate.getCode(), currencyRate.getMid().toString());
-    }
-
     public List<CurrencyRate> mapToRateList(List<CurrencyRateDTO> currencyRateDTOList) {
         return currencyRateDTOList.stream()
                 .map(this::mapToRate)
-                .collect(Collectors.toList());
-    }
-
-    public List<CurrencyRateDTO> mapToRateDTOList(List<CurrencyRate> currencyRateList) {
-        return currencyRateList.stream()
-                .map(this::mapToRateDTO)
                 .collect(Collectors.toList());
     }
 
@@ -41,22 +31,9 @@ public class CurrencyRatesMapper {
                 mapToRateList(ratesTableDTO.getRates()));
     }
 
-    public RatesTableDTO mapToRatesTableDTO(RatesTable ratesTable) {
-        return new RatesTableDTO(
-                ratesTable.getTable(),
-                ratesTable.getEffectiveDate().toString(),
-                mapToRateDTOList(ratesTable.getCurrencyRates()));
-    }
-
     public List<RatesTable> mapToRatesTableList(List<RatesTableDTO> ratesTableDTOList) {
         return ratesTableDTOList.stream()
                 .map(this::mapToRatesTable)
-                .collect(Collectors.toList());
-    }
-
-    public List<RatesTableDTO> mapToRatesTableDTOList(List<RatesTable> ratesTableList) {
-        return ratesTableList.stream()
-                .map(this::mapToRatesTableDTO)
                 .collect(Collectors.toList());
     }
  }
