@@ -1,12 +1,12 @@
 package com.currencyconvert.service;
 
 import com.currencyconvert.client.NBPClient;
+import com.currencyconvert.config.NBPConfig;
 import com.currencyconvert.domain.CurrencyRate;
 import com.currencyconvert.domain.RatesTable;
 import com.currencyconvert.dto.RatesTableDTO;
 import com.currencyconvert.mapper.CurrencyRatesMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -20,13 +20,11 @@ public class NBPService {
 
     private final NBPClient nbpClient;
     private final CurrencyRatesMapper currencyRatesMapper;
-
-    @Value("${nbp.api.tables}")
-    private List<String> nbpRatesTables;
+    private final NBPConfig nbpConfig;
 
     public List<RatesTable> getAvailableCurrencyRates() {
             List<RatesTableDTO> ratesResponse = Stream.of(new RatesTableDTO[]{}).collect(Collectors.toList());
-            for (String tables : nbpRatesTables) {
+            for (String tables : nbpConfig.getNbpRatesTables()) {
                 ratesResponse.addAll(nbpClient.getCurrencyWithRatesFromTable(tables));
             }
             return currencyRatesMapper.mapToRatesTableList(ratesResponse);
